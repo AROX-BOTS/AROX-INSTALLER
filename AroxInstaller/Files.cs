@@ -17,16 +17,12 @@ namespace AroxInstaller
             }
 
             var tempDir = new DirectoryInfo(Config.TEMP_DIR);
-
-            Utils.print("Preparing file structure");
-
             tempDir.Create();
             tempDir.Attributes = FileAttributes.Hidden | FileAttributes.Directory;
         }
 
         private static void purgeTemp()
         {
-            Utils.print("Purging old files");
             Directory.Delete(Config.TEMP_DIR, true);
         }
     }
