@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace AroxInstaller
 {
@@ -12,9 +13,9 @@ namespace AroxInstaller
         public async Task handle()
         {
             Console.Clear();
-            Utils.print("Which version do you wish to install?");
-            Utils.print("[1] CLI");
-            Utils.print("[2] UI");
+            Utils.print("Which version do you wish to install?", Color.Orange);
+            Utils.print("[1] CLI", Color.Yellow);
+            Utils.print("[2] UI", Color.Yellow);
 
             await getSelection();
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace AroxInstaller
 {
@@ -26,7 +27,7 @@ namespace AroxInstaller
             {
                 using (var httpClient = new HttpClientWrapper(fileModel.Url))
                 {
-                    Utils.print("Downloading " + fileModel.Name);
+                    Utils.print("Downloading " + fileModel.Name, Color.Orange);
                     await httpClient.downloadFileAsync(fileModel.Path);
                 }
 
@@ -46,24 +47,24 @@ namespace AroxInstaller
 
         private static Task installExe(FileModel file)
         {
-            Utils.print("Installing " + file.Name);
+            Utils.print("Installing " + file.Name, Color.Yellow);
 
             var process = Process.Start(file.Path, file.StartParams);
             process.WaitForExit();
 
-            Utils.print("Installed " + file.Name);
+            Utils.print("Installed " + file.Name, Color.LimeGreen);
             return Task.CompletedTask;
         }
 
         private static Task installMsi(FileModel file)
         {
             var fileInfo = new FileInfo(file.Path);
-            Utils.print("Installing " + file.Name);
+            Utils.print("Installing " + file.Name, Color.Yellow);
 
             var process = Process.Start("msiexec.exe", "/qn /norestart /i " + fileInfo.FullName);
             process.WaitForExit();
 
-            Utils.print("Installed " + file.Name);
+            Utils.print("Installed " + file.Name, Color.LimeGreen);
             return Task.CompletedTask;
         }
     }
