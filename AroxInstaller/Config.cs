@@ -27,21 +27,24 @@ namespace AroxInstaller
             {
                 Name = "Python",
                 Path = TEMP_DIR + "python39.exe",
-                Url = "https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe"
+                Url = "https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe",
+                StartParams = "/quiet InstallAllUsers=1 PrependPath=1 Include_test=0"
             },
 
             new FileModel()
             {
                 Name = "VC redistriduables",
                 Path = TEMP_DIR + "vcredists.exe",
-                Url = "http://aka.ms/vs/16/release/vc_redist.x64.exe"
+                Url = "http://aka.ms/vs/16/release/vc_redist.x64.exe",
+                StartParams = "/install /norestart /quiet"
             },
 
             new FileModel()
             {
                 Name = ".NET Desktop runtime",
                 Path = TEMP_DIR + "netruntime.exe",
-                Url = "https://download.visualstudio.microsoft.com/download/pr/f13d7b5c-608f-432b-b7ec-8fe84f4030a1/5e06998f9ce23c620b9d6bac2dae6c1d/windowsdesktop-runtime-6.0.4-win-x64.exe"
+                Url = "https://download.visualstudio.microsoft.com/download/pr/f13d7b5c-608f-432b-b7ec-8fe84f4030a1/5e06998f9ce23c620b9d6bac2dae6c1d/windowsdesktop-runtime-6.0.4-win-x64.exe",
+                StartParams = "/install /quiet /norestart"
             }
         };
     }
