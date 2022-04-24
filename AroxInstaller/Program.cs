@@ -13,6 +13,13 @@ namespace AroxInstaller
         public static async Task MainAsync(string[] args)
         {
             Utils.setupConsole();
+
+            if (!Utils.IsRanAsAdmin())
+            {
+                Utils.print("Run the installer as administrator!", Color.Red);
+                Console.ReadLine();
+            }
+
             Files.prepare();
 
             var menu = new Menu();
