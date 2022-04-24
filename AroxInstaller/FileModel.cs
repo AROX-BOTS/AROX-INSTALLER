@@ -12,5 +12,6 @@ namespace AroxInstaller
         public string Path { get; set; }
         public string Url { get; set; }
         public string StartParams { get; set; }
+        public bool Delete { get; set; }
     }
 }
