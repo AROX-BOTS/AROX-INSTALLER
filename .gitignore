@@ -4,3 +4,5 @@
 
 /.vs
 /AroxInstaller/obj
+/AroxInstaller/bin/Debug/net6.0/temp
+/AroxInstaller/bin/Debug/net6.0
