@@ -21,7 +21,7 @@ namespace AroxInstaller
             tempDir.Attributes = FileAttributes.Hidden | FileAttributes.Directory;
         }
 
-        private static void purgeTemp()
+        public static void purgeTemp()
         {
             Directory.Delete(Config.TEMP_DIR, true);
         }

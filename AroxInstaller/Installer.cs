@@ -16,12 +16,14 @@ namespace AroxInstaller
         {
             await installNecessary();
             await downloadApi(Config.cliFiles);
+            Files.purgeTemp();
         }
 
         public static async Task installUI()
         {
             await installNecessary();
             await downloadApi(Config.uiFiles);
+            Files.purgeTemp();
         }
 
         private static async Task downloadApi(List<FileModel> fileModels)

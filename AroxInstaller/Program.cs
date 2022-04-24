@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Drawing;
 
 namespace AroxInstaller
 { 
@@ -16,6 +17,9 @@ namespace AroxInstaller
 
             var menu = new Menu();
             await menu.handle();
+            Utils.print("DONE!!!!!", Color.Lime);
+            Utils.print("Press any key to exit", Color.Yellow);
+            Console.ReadLine();
         }
     }
 }
