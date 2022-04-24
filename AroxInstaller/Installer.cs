@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO.Compression;
 
 namespace AroxInstaller
 {
@@ -42,10 +43,10 @@ namespace AroxInstaller
                     {
                         case ".exe":
                             Utils.print($"Moving {fileInfo.Name} to the root directory", Color.Green);
-                            fileInfo.MoveTo(fileInfo.Name); //Move to root
+                            fileInfo.MoveTo(fileInfo.Name, true); //Move to root
                             break;
                         case ".zip":
-                            Utils.print("Processing " + fileInfo.Name, Color.Green);
+                            Utils.print("Processing " + fileInfo.Name, Color.Yellow);
                             await processZipFile(fileInfo);
                             break;
                     }
@@ -61,7 +62,54 @@ namespace AroxInstaller
 
         private static async Task processZipFile(FileInfo fileInfo)
         {
+            using (var zipFile = ZipFile.OpenRead(fileInfo.FullName))
+            {
+                foreach (var entry in zipFile.Entries)
+                {
+                    var extension = Path.GetExtension(entry.Name);
 
+                    switch (extension)
+                    {
+                        case ".dll":
+                            Utils.print($"Extracting {entry.Name} to root directory", Color.Green);
+                            entry.ExtractToFile(entry.Name, true);
+                            break;
+                        case ".gz":
+                            Utils.print($"Extracting {entry.Name} to temp directory", Color.Green);
+                            var path = Config.TEMP_DIR + entry.Name;
+                            entry.ExtractToFile(path, true);
+
+                            Utils.print($"Installing {entry.Name} via pip3", Color.Yellow);
+                            await installPipPackage(new FileInfo(path)); //need absolute path
+
+                            Utils.print($"Installed {entry.Name} via pip3", Color.LimeGreen);
+                            Utils.print($"Deleting {entry.Name} from temp directory", Color.YellowGreen);
+                            File.Delete(path);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private static Task installNpmPackage(string name)
+        {
+            var npmProcess = Process.Start("cmd.exe", "/C npm install -g " + name);
+            npmProcess.WaitForExit();
+            return Task.CompletedTask;
+        }
+
+        private static Task installPipPackage(string name)
+        {
+            var pipProcess = Process.Start("cmd.exe", "/C pip3 install -U " + name);
+            pipProcess.WaitForExit();
+            return Task.CompletedTask;
+        }
+
+        private static Task installPipPackage(FileInfo file)
+        {
+            var pipProcess = Process.Start("cmd.exe", "/C pip3 install -U " + file.FullName);
+            pipProcess.WaitForExit();
+            return Task.CompletedTask;
         }
 
         private static async Task installNecessary()
@@ -86,6 +134,14 @@ namespace AroxInstaller
                         break;
                 }
             }
+
+            Utils.print("Installing captcha-harvester via pip", Color.Yellow);
+            await installPipPackage("captcha-harvester");
+            Utils.print("Installed captcha-harvester", Color.LimeGreen);
+
+            Utils.print("Installing near-cli via npm", Color.Yellow);
+            await installNpmPackage("near-cli");
+            Utils.print("Installed near-cli", Color.LimeGreen);
         }
 
         private static Task installExe(FileModel file)
