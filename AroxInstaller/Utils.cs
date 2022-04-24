@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Console = Colorful.Console;
-using System.Drawing;
-using System.Security.Principal;
+﻿using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
+using Console = Colorful.Console;
 
 namespace AroxInstaller
 {

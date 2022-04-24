@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace AroxInstaller
-{ 
+{
     class Program
     {
         public static void Main(string[] args)

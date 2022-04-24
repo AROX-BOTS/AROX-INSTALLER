@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Drawing;
 using System.IO.Compression;
 
@@ -38,7 +32,7 @@ namespace AroxInstaller
                     Utils.print("Downloading " + fileModel.Name, Color.Orange);
                     await httpClient.downloadFileAsync(fileModel.Path);
                     Utils.print("Downloaded " + fileModel.Name, Color.LimeGreen);
-                    
+
                     var fileInfo = new FileInfo(fileModel.Path);
 
                     switch (fileInfo.Extension)
