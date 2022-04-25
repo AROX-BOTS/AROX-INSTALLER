@@ -40,8 +40,11 @@ namespace AroxInstaller
         {
             using (var client = new HttpClientWrapper(Config.API_ENDPOINT + "version"))
             {
+                client.setHeader(Config.API_HEADER_NAME, Config.API_HEADER_VALUE);
+                client.setHeader("User-Agent", Config.API_USER_AGENT);
+
                 var serverVersion = await client.getString();
-                return serverVersion == Config.VERSION;
+                return serverVersion != Config.VERSION;
             }
         }
     }
