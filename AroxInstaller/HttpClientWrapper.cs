@@ -22,6 +22,11 @@
             _httpClient.DefaultRequestHeaders.Add(name, value);
         }
 
+        public async Task<string> getString()
+        {
+            return await _httpClient.GetStringAsync("");
+        }
+
         public async Task downloadFileAsync(string filename)
         {
             var bytes = await _httpClient.GetByteArrayAsync("");

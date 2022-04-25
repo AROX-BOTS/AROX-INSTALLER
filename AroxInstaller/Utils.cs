@@ -35,5 +35,14 @@ namespace AroxInstaller
             //not aware of any MACOS check for is admin
             return true;
         }
+
+        public static async Task<bool> isOutdated()
+        {
+            using (var client = new HttpClientWrapper(Config.API_ENDPOINT + "version"))
+            {
+                var serverVersion = await client.getString();
+                return serverVersion == Config.VERSION;
+            }
+        }
     }
 }

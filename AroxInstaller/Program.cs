@@ -20,6 +20,13 @@ namespace AroxInstaller
                 return;
             }
 
+            if (await Utils.isOutdated())
+            {
+                Utils.print("You are running an outdated version, re-download the installer!", Color.Red);
+                Console.ReadLine();
+                return;
+            }
+
             Files.prepare();
 
             var menu = new Menu();
