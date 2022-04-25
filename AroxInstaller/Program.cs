@@ -17,6 +17,7 @@ namespace AroxInstaller
             {
                 Utils.print("Run the installer as administrator!", Color.Red);
                 Console.ReadLine();
+                return;
             }
 
             Files.prepare();
