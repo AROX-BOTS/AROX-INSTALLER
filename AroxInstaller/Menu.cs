@@ -53,7 +53,9 @@ namespace AroxInstaller
                 Utils.print("[2] No", Color.Yellow);
                 response = Console.ReadLine();
             } while (response != "1" && response != "2");
-            
+
+            Console.Clear();
+
             return Task.FromResult(response == "1");
         }
     }
