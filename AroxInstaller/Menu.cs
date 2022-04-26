@@ -47,10 +47,10 @@ namespace AroxInstaller
             var response = "";
             do { 
                 Console.Clear();
-                Utils.print("Do you wish to install necessary dependencies?", Color.Yellow);
+                Utils.print("Do you wish to install necessary dependencies?", Color.Orange);
                 Utils.print("This is usually required only once!", Color.Red);
-                Utils.print("[1] Yes");
-                Utils.print("[2] No");
+                Utils.print("[1] Yes", Color.Yellow);
+                Utils.print("[2] No", Color.Yellow);
             } while (response != "1" && response != "2");
             
             return Task.FromResult(response == "1");
