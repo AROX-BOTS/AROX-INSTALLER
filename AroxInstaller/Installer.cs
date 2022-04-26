@@ -9,8 +9,8 @@ namespace AroxInstaller
         public static async Task installCLI(Menu menu)
         {
             if (await menu.askDependencies())
-            { 
-               await installNecessary();
+            {
+                await installNecessary();
             }
 
             await downloadApi(Config.cliFiles);
@@ -20,7 +20,7 @@ namespace AroxInstaller
         public static async Task installUI(Menu menu)
         {
             if (await menu.askDependencies())
-            { 
+            {
                 await installNecessary();
             }
 

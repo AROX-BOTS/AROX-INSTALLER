@@ -45,7 +45,8 @@ namespace AroxInstaller
         public Task<bool> askDependencies()
         {
             var response = "";
-            do { 
+            do
+            {
                 Console.Clear();
                 Utils.print("Do you wish to install necessary dependencies?", Color.Orange);
                 Utils.print("This is usually required only once!", Color.Red);

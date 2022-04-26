@@ -7,7 +7,7 @@
         public const string API_HEADER_VALUE = "db4718855207a2018bf144c6482fc8b267d37aa734f1e5be87294d3a7112012c";
         public const string API_USER_AGENT = "621c197ca68a33f800ca542539e90cc3e311ae3b6f917ef2d585ccdc6c04a666";
         public const string TEMP_DIR = "temp/";
-        public const string VERSION = "1.1";
+        public const string VERSION = "1.2";
 
         public static readonly List<FileModel> files = new()
         {
