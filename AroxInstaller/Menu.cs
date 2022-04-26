@@ -51,6 +51,7 @@ namespace AroxInstaller
                 Utils.print("This is usually required only once!", Color.Red);
                 Utils.print("[1] Yes", Color.Yellow);
                 Utils.print("[2] No", Color.Yellow);
+                response = Console.ReadLine();
             } while (response != "1" && response != "2");
             
             return Task.FromResult(response == "1");
