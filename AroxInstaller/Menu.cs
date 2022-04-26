@@ -34,12 +34,26 @@ namespace AroxInstaller
             switch (selection)
             {
                 case "1": //CLI
-                    await Installer.installCLI();
+                    await Installer.installCLI(this);
                     break;
                 case "2": //UI
-                    await Installer.installUI();
+                    await Installer.installUI(this);
                     break;
             }
+        }
+
+        public Task<bool> askDependencies()
+        {
+            var response = "";
+            do { 
+                Console.Clear();
+                Utils.print("Do you wish to install necessary dependencies?", Color.Yellow);
+                Utils.print("This is usually required only once!", Color.Red);
+                Utils.print("[1] Yes");
+                Utils.print("[2] No");
+            } while (response != "1" && response != "2");
+            
+            return Task.FromResult(response == "1");
         }
     }
 }

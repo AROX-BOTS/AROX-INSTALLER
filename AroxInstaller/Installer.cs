@@ -6,16 +6,24 @@ namespace AroxInstaller
 {
     internal static class Installer
     {
-        public static async Task installCLI()
+        public static async Task installCLI(Menu menu)
         {
-            await installNecessary();
+            if (await menu.askDependencies())
+            { 
+               await installNecessary();
+            }
+
             await downloadApi(Config.cliFiles);
             Files.purgeTemp();
         }
 
-        public static async Task installUI()
+        public static async Task installUI(Menu menu)
         {
-            await installNecessary();
+            if (await menu.askDependencies())
+            { 
+                await installNecessary();
+            }
+
             await downloadApi(Config.uiFiles);
             Files.purgeTemp();
         }
